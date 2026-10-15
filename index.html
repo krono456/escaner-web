@@ -13,43 +13,34 @@
   --shadow:0 10px 30px rgba(0,0,0,.35);
 }
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 body{margin:0;font-family:'Segoe UI',system-ui,Roboto,sans-serif;background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);color:var(--text);min-height:100vh}
-
-/* ---------- Hero ---------- */
 .hero{padding:48px 24px 28px;text-align:center;background:radial-gradient(1200px 400px at 50% -100px, rgba(74,222,128,.10), transparent 70%)}
-.hero .badge{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--accent);background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.25);padding:6px 16px;border-radius:30px;margin-bottom:18px}
+.hero .tag{display:inline-flex;gap:8px;font-size:13px;color:var(--accent);background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.25);padding:6px 16px;border-radius:30px;margin-bottom:18px}
 .hero h1{margin:0;font-size:32px;font-weight:700;letter-spacing:-.02em}
 .hero h1 span{color:var(--accent)}
 .hero p{margin:12px auto 0;max-width:640px;color:var(--muted);font-size:15px;line-height:1.6}
-
-/* ---------- Cómo funciona ---------- */
 .how{max-width:1080px;margin:24px auto;padding:0 24px}
-.how-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:24px;align-items:center;background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:28px;box-shadow:var(--shadow)}
-@media(max-width:800px){.how-grid{grid-template-columns:1fr}}
-.how-grid h2{margin:0 0 14px;font-size:19px;display:flex;align-items:center;gap:10px}
-.how-grid h2::before{content:'';width:4px;height:20px;background:var(--accent);border-radius:2px}
-.how-grid h3{margin:16px 0 6px;font-size:14px;color:var(--accent2)}
-.how-grid p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.65}
-.how-grid p b{color:var(--text)}
+.how-box{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:28px;box-shadow:var(--shadow)}
+.how-box h2{margin:0 0 14px;font-size:19px;display:flex;align-items:center;gap:10px}
+.how-box h2::before{content:'';width:4px;height:20px;background:var(--accent);border-radius:2px}
+.how-box h3{margin:16px 0 6px;font-size:14px;color:var(--accent2)}
+.how-box p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.65}
+.how-box p b{color:var(--text)}
 .legend{list-style:none;margin:8px 0 0;padding:0}
-.legend li{margin:8px 0;font-size:13px;color:var(--muted);line-height:1.5;display:flex;align-items:flex-start;gap:10px}
+.legend li{margin:10px 0;font-size:13px;color:var(--muted);line-height:1.5;display:flex;align-items:flex-start;gap:12px}
+.legend li .badge{flex:none;min-width:190px;text-align:center}
 .legend li b{color:var(--text)}
-.how-img{display:flex;justify-content:center}
-.how-img img{max-width:100%;border-radius:12px;border:1px solid var(--border);box-shadow:var(--shadow)}
-
-/* ---------- Main ---------- */
 main{max-width:1080px;margin:0 auto;padding:8px 24px 40px}
 .tabs{display:flex;gap:10px;margin:24px 0 18px}
-.tabs button{background:var(--panel);border:1px solid var(--border);color:var(--muted);border-radius:10px;padding:10px 22px;font-size:14px;font-weight:600;cursor:pointer;transition:.15s}
-.tabs button:hover{border-color:var(--accent2);color:var(--text)}
+.tabs button{background:var(--panel);border:1px solid var(--border);color:var(--muted);padding:10px 22px;font-size:14px}
+.tabs button:hover{border-color:var(--accent2);color:var(--text);filter:none}
 .tabs button.on{background:linear-gradient(135deg,rgba(74,222,128,.15),rgba(56,189,248,.10));border-color:var(--accent);color:var(--accent)}
-
 #dropzone{border:2px dashed var(--border);border-radius:14px;padding:44px;text-align:center;cursor:pointer;transition:.2s;background:var(--panel)}
 #dropzone.drag{border-color:var(--accent);background:rgba(74,222,128,.05)}
 #dropzone .icon{font-size:44px}
 #dropzone p{margin:10px 0 0;color:var(--muted)}
 #dropzone p strong{color:var(--text)}
-
 .config{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
 @media(max-width:700px){.config{grid-template-columns:1fr}}
 .card{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
@@ -58,406 +49,601 @@ textarea,input[type=password]{width:100%;background:var(--bg);border:1px solid v
 textarea{height:96px;resize:vertical}
 textarea:focus,input:focus{outline:none;border-color:var(--accent2)}
 .row{display:flex;gap:12px;align-items:center;margin-top:10px;font-size:13px;color:var(--muted);flex-wrap:wrap}
-
+.row label{margin:0;display:flex;align-items:center;gap:6px}
 table{width:100%;border-collapse:collapse;margin-top:22px;font-size:14px;background:var(--panel);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
-th,td{text-align:left;padding:14px;border-bottom:1px solid var(--border);vertical-align:middle}
+th,td{text-align:left;padding:14px;border-bottom:1px solid var(--border);vertical-align:top}
 tr:last-child td{border-bottom:0}
 th{background:var(--panel2);color:var(--muted);font-weight:600;font-size:11.5px;text-transform:uppercase;letter-spacing:.06em}
-tbody tr:hover{filter:brightness(1.15)}
 tr.r-ok{background:rgba(74,222,128,.07)}
 tr.r-warn{background:rgba(251,191,36,.08)}
 tr.r-bad{background:rgba(248,113,113,.10)}
 tr.r-mut{background:rgba(143,160,189,.05)}
-.hash,.urlcell{font-family:ui-monospace,Consolas,monospace;font-size:11.5px;word-break:break-all;color:var(--text)}
-.badge{display:inline-block;padding:6px 14px;border-radius:20px;font-size:13.5px;font-weight:700;white-space:nowrap}
+.hash,.urlcell{font-family:ui-monospace,Consolas,monospace;font-size:11.5px;word-break:break-all}
+.badge{display:inline-block;padding:6px 14px;border-radius:20px;font-size:13.5px;font-weight:700}
 .b-ok{background:rgba(74,222,128,.15);color:var(--ok);box-shadow:0 0 0 1px rgba(74,222,128,.35)}
 .b-bad{background:rgba(248,113,113,.15);color:var(--bad);box-shadow:0 0 0 1px rgba(248,113,113,.4)}
 .b-warn{background:rgba(251,191,36,.15);color:var(--warn);box-shadow:0 0 0 1px rgba(251,191,36,.4)}
-.b-info{background:rgba(56,189,248,.12);color:var(--accent2)}
 .b-mut{background:rgba(143,160,189,.12);color:var(--muted)}
-a{color:var(--accent2);text-decoration:none}
-a:hover{text-decoration:underline}
 #summary,#urlSummary{margin-top:16px;font-size:14px;color:var(--muted)}
-#summary b,#urlSummary b{font-weight:700}
 .s-ok{color:var(--ok)} .s-bad{color:var(--bad)} .s-warn{color:var(--warn)}
 button{background:var(--accent);border:0;color:#06250f;border-radius:8px;padding:9px 18px;font-size:13px;font-weight:700;cursor:pointer;transition:.15s}
 button:hover{filter:brightness(1.1)}
 button.ghost{background:transparent;border:1px solid var(--border);color:var(--muted);font-weight:600}
 button.ghost:hover{border-color:var(--accent2);color:var(--text);filter:none}
 footer{padding:28px 24px;color:var(--muted);font-size:12px;text-align:center;border-top:1px solid var(--border);margin-top:30px}
+.fdet{margin-top:8px;font-size:11.5px;line-height:1.55}
+.fdet .f{display:block;padding:2px 0;color:var(--muted)}
+.fdet .f.bad{color:var(--bad)} .fdet .f.warn{color:var(--warn)} .fdet .f.ok{color:var(--ok)}
 </style>
 </head>
 <body>
 
 <header class="hero">
-  <div class="badge">🛡️ 100% en tu navegador · nada se sube</div>
+  <div class="tag">🛡️ 100% en tu navegador · nada se sube</div>
   <h1>Escáner Web de <span>Archivos</span> y <span>Links</span></h1>
   <p>Un solo archivo HTML, sin instalar nada. Arrastra archivos (o carpetas) o pega URLs, y el navegador los analiza en tu máquina: tus archivos nunca salen de ella.</p>
 </header>
 
 <section class="how">
-  <div class="how-grid">
-    <div>
-      <h2>Cómo funciona</h2>
-      <h3>📄 Archivos</h3>
-      <p>Calcula el <b>SHA-256</b> local y lo compara con tus <b>firmas</b> (lista de hashes, sin internet) y/o con <b>VirusTotal</b> (API key gratuita; solo viaja el hash, nunca el archivo).</p>
-      <h3>🔗 Links</h3>
-      <p><b>Heurísticas locales</b> sin clave (IPs directas, punycode, acortadores, TLDs de riesgo, credenciales en la URL) + <b>VirusTotal</b> + <b>URLhaus</b> (claves gratuitas, opcionales).</p>
-      <h3>📊 Qué significa cada resultado</h3>
-      <ul class="legend">
-        <li><span class="badge b-ok">✅ Limpio / Sin señales</span><span><b>Archivos:</b> no coincide con ninguna firma tuya (y en VT, si lo consultas, ningún motor lo marca). <b>Links:</b> ninguna heurística local se activó.</span></li>
-        <li><span class="badge b-bad">⚠️ Firma conocida</span><span><b>Archivos:</b> el hash está en tu lista de firmas → es un archivo que tú mismo registraste como peligroso.</span></li>
-        <li><span class="badge b-bad">🦠 Malicioso</span><span>Al menos un motor de <b>VirusTotal</b> lo marca como malware, o <b>URLhaus</b> lo tiene registrado como URL maliciosa.</span></li>
-        <li><span class="badge b-warn">❓ Sospechoso</span><span><b>Archivos:</b> algunos motores de VT lo marcan como sospechoso (no confirmado). <b>Links:</b> se activaron señales locales (sin HTTPS, IP directa, acortador, TLD de riesgo, etc.).</span></li>
-        <li><span class="badge b-mut">No en VirusTotal / URLhaus</span><span>No hay registro de ese hash o URL en la base. No significa que sea seguro: solo que nadie lo ha reportado.</span></li>
-        <li><span class="badge b-mut">Error / —</span><span>No se pudo consultar (sin API key, sin internet o límite de peticiones). El "—" en una columna significa que esa consulta no está activada.</span></li>
-      </ul>
-      <h3>✅ Uso</h3>
-      <p>Abre la página → arrastra archivos o pega URLs → (opcional) guarda tus API keys → revisa el resultado, que además tiñe la fila de verde, amarillo o rojo.</p>
-      <h3>⚠️ Limitaciones</h3>
-      <p>Solo escanea lo que tú le pegas (no el PC completo), archivos &gt;1-2 GB pueden ser pesados, y VT/URLhaus necesitan internet.</p>
-    </div>
-    <div class="how-img">
-      <img src="como-funciona.png" alt="Cómo funciona el escáner">
-    </div>
+  <div class="how-box">
+    <h2>Cómo funciona</h2>
+    <h3>📄 Archivos</h3>
+    <p><b>Análisis local</b> sin internet: tipo real (magic bytes), discrepancia extensión/tipo, entropía, secciones y APIs de PE, patrones de scripts, macros/DDE en Office, zip bomb y ejecutables anidados. Además calcula el <b>SHA-256</b> y lo compara con tus <b>firmas</b> y/o <b>VirusTotal</b> (opcional).</p>
+    <h3>🔗 Links</h3>
+    <p><b>Heurísticas locales</b> sin clave (IPs directas, punycode, acortadores, TLDs de riesgo, credenciales en la URL) + <b>VirusTotal</b> + <b>URLhaus</b> (claves gratuitas, opcionales).</p>
+    <h3>📊 Qué significa cada resultado</h3>
+    <ul class="legend">
+      <li><span class="badge b-ok">✅ Limpio / Sin señales</span><span><b>Archivos:</b> sin firma tuya, sin señales locales y (si consultas VT) ningún motor lo marca. <b>Links:</b> ninguna heurística local se activó.</span></li>
+      <li><span class="badge b-bad">⚠️ Firma conocida</span><span><b>Archivos:</b> el hash está en tu lista de firmas, o sea, un archivo que tú registraste como peligroso.</span></li>
+      <li><span class="badge b-bad">🦠 Malicioso / Señales locales</span><span>Al menos un motor de <b>VirusTotal</b> lo marca, <b>URLhaus</b> lo tiene registrado, o el <b>análisis local</b> encontró señales fuertes (APIs de inyección, DDE, zip bomb, extensión falsificada…).</span></li>
+      <li><span class="badge b-warn">❓ Sospechoso</span><span><b>Archivos:</b> señales locales moderadas (empaquetado, alta entropía, macros, URLs embebidas raras) o motores de VT sospechosos. <b>Links:</b> se activaron señales locales.</span></li>
+      <li><span class="badge b-mut">No en VirusTotal / URLhaus</span><span>No hay registro de ese hash o URL en la base. No significa que sea seguro: solo que nadie lo ha reportado.</span></li>
+      <li><span class="badge b-mut">Error / —</span><span>No se pudo consultar (sin API key, sin internet o límite de peticiones). El "—" significa que esa consulta no está activada.</span></li>
+    </ul>
+    <h3>✅ Uso</h3>
+    <p>Abre la página → arrastra archivos o pega URLs → (opcional) guarda tus API keys → revisa el resultado, que además tiñe la fila de verde, amarillo o rojo.</p>
+    <h3>⚠️ Limitaciones</h3>
+    <p>Solo escanea lo que tú le pegas (no el PC completo). Archivos muy grandes (&gt;512 MB) se omiten. El análisis es estático (no ejecuta nada), así que un malware empaquetado y "limpio" puede pasar. VT y URLhaus necesitan internet.</p>
   </div>
 </section>
 
 <main>
   <div class="tabs">
-    <button id="tabFiles" class="on">📄 Archivos</button>
-    <button id="tabLinks">🔗 Links</button>
+    <button class="on" data-t="files">📄 Archivos</button>
+    <button data-t="links">🔗 Links</button>
   </div>
 
-  <!-- ============ ARCHIVOS ============ -->
-  <section id="secFiles">
+  <!-- Configuración compartida -->
+  <div class="config" style="margin-top:0;margin-bottom:20px">
+    <div class="card">
+      <label>Lista de firmas (un SHA-256 por línea, con etiqueta opcional)</label>
+      <textarea id="signatures" placeholder="e3b0c442...  nombre-opcional"></textarea>
+      <div class="row"><button id="saveSigs">Guardar firmas</button><span id="sigCount"></span></div>
+    </div>
+    <div class="card">
+      <label>API key de VirusTotal (opcional)</label>
+      <input type="password" id="vtKey" placeholder="virustotal.com/gui/my-apikey">
+      <label style="margin-top:12px">Auth-Key de URLhaus (opcional)</label>
+      <input type="password" id="uhKey" placeholder="auth.abuse.ch">
+      <div class="row">
+        <label><input type="checkbox" id="useVT"> Consultar VirusTotal</label>
+        <label><input type="checkbox" id="useUH"> Consultar URLhaus</label>
+        <button id="saveKeys">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel archivos -->
+  <div id="panelFiles">
     <div id="dropzone">
       <div class="icon">📂</div>
       <p><strong>Suelta archivos o una carpeta aquí</strong> o haz clic para elegirlos</p>
-      <p style="font-size:12px">Varios a la vez · el hash se calcula localmente</p>
+      <p>Varios a la vez · el hash y el análisis se hacen localmente</p>
+      <div class="row" style="justify-content:center"><button class="ghost" id="pickFolder">📁 Elegir carpeta</button></div>
+      <input type="file" id="fileInput" multiple hidden>
+      <input type="file" id="folderInput" webkitdirectory hidden>
     </div>
-    <input type="file" id="fileInput" multiple hidden>
-    <input type="file" id="dirInput" webkitdirectory hidden>
-    <div style="margin-top:14px"><button class="ghost" id="pickDir">📁 Elegir carpeta</button></div>
-
-    <div class="config">
-      <div class="card">
-        <label>Lista de firmas (un SHA-256 por línea, con etiqueta opcional)</label>
-        <textarea id="signatures" placeholder="e3b0c442...  nombre-opcional"></textarea>
-        <div class="row">
-          <button id="saveSigs">Guardar firmas</button>
-          <span id="sigCount"></span>
-        </div>
-      </div>
-      <div class="card">
-        <label>API key de VirusTotal (opcional)</label>
-        <input type="password" id="vtKey" placeholder="virustotal.com/gui/my-apikey">
-        <div class="row">
-          <label style="margin:0"><input type="checkbox" id="useVT"> Consultar VirusTotal</label>
-          <button id="saveVT">Guardar</button>
-        </div>
-      </div>
-    </div>
-
     <table id="results" hidden>
       <thead><tr><th>Archivo</th><th>Tamaño</th><th>SHA-256</th><th>Resultado</th></tr></thead>
       <tbody id="tbody"></tbody>
     </table>
     <div id="summary"></div>
     <div style="margin-top:16px"><button class="ghost" id="clear">Limpiar resultados</button></div>
-  </section>
+  </div>
 
-  <!-- ============ LINKS ============ -->
-  <section id="secLinks" hidden>
+  <!-- Panel links -->
+  <div id="panelLinks" hidden>
     <div class="card">
-      <label>Pega URLs (una por línea)</label>
-      <textarea id="urls" placeholder="https://ejemplo.com/archivo.exe&#10;http://192.168.1.5/payload.php"></textarea>
-      <div class="row">
-        <button id="scanUrls">🔍 Escanear links</button>
-      </div>
+      <label>Pega una o varias URLs (una por línea)</label>
+      <textarea id="urls" placeholder="https://ejemplo.com/login&#10;http://192.168.1.10/descarga.exe"></textarea>
+      <div class="row"><button id="scanUrls">Analizar links</button></div>
     </div>
-    <div class="config">
-      <div class="card">
-        <label>Auth-Key de URLhaus (gratis en auth.abuse.ch)</label>
-        <input type="password" id="uhKey" placeholder="tu Auth-Key de abuse.ch">
-        <div class="row">
-          <label style="margin:0"><input type="checkbox" id="useUH"> Consultar URLhaus</label>
-          <button id="saveUH">Guardar</button>
-        </div>
-      </div>
-      <div class="card">
-        <label>Heurísticas locales</label>
-        <p style="font-size:13px;color:var(--muted);margin:6px 0;line-height:1.6">Siempre activas, sin clave ni internet: detectan IPs directas, punycode, acortadores, TLDs de riesgo, credenciales en la URL, payloads largos, etc.</p>
-      </div>
-    </div>
-
     <table id="urlResults" hidden>
-      <thead><tr><th>URL</th><th>Local</th><th>VirusTotal</th><th>URLhaus</th></tr></thead>
-      <tbody id="urlTbody"></tbody>
+      <thead><tr><th>URL</th><th>Heurísticas</th><th>VirusTotal</th><th>URLhaus</th><th>Resultado</th></tr></thead>
+      <tbody id="urlBody"></tbody>
     </table>
     <div id="urlSummary"></div>
     <div style="margin-top:16px"><button class="ghost" id="clearUrls">Limpiar resultados</button></div>
-  </section>
+  </div>
 </main>
 
 <footer>Los archivos nunca salen de tu navegador. VirusTotal y URLhaus solo reciben el hash o la URL.</footer>
 
 <script>
-const $ = id => document.getElementById(id);
+const $ = s => document.querySelector(s);
+const store = {
+  get(k){ try { return localStorage.getItem(k) || ''; } catch { return ''; } },
+  set(k,v){ try { localStorage.setItem(k,v); } catch {} }
+};
+const fmtSize = n => n<1024 ? n+' B' : n<1048576 ? (n/1024).toFixed(1)+' KB' : n<1073741824 ? (n/1048576).toFixed(1)+' MB' : (n/1073741824).toFixed(2)+' GB';
+const toHex = b => [...new Uint8Array(b)].map(x => x.toString(16).padStart(2,'0')).join('');
+function el(tag, cls, text){ const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; }
+const MAX_SIZE = 512 * 1024 * 1024;
 
-// ---------- Tabs ----------
-$('tabFiles').onclick = () => setTab('Files');
-$('tabLinks').onclick = () => setTab('Links');
-function setTab(t){
-  $('tabFiles').classList.toggle('on', t==='Files');
-  $('tabLinks').classList.toggle('on', t==='Links');
-  $('secFiles').hidden = t!=='Files';
-  $('secLinks').hidden = t!=='Links';
+// ---------- Pestañas ----------
+document.querySelectorAll('.tabs button').forEach(b => b.onclick = () => {
+  document.querySelectorAll('.tabs button').forEach(x => x.classList.toggle('on', x === b));
+  $('#panelFiles').hidden = b.dataset.t !== 'files';
+  $('#panelLinks').hidden = b.dataset.t !== 'links';
+});
+
+// ---------- Configuración ----------
+$('#signatures').value = store.get('sigs');
+$('#vtKey').value = store.get('vtKey');
+$('#uhKey').value = store.get('uhKey');
+$('#useVT').checked = store.get('useVT') === '1';
+$('#useUH').checked = store.get('useUH') === '1';
+function parseSigs(){
+  const m = new Map();
+  $('#signatures').value.split('\n').forEach(l => {
+    const r = l.trim().match(/^([0-9a-f]{64})\s*(.*)$/i);
+    if (r) m.set(r[1].toLowerCase(), r[2] || 'sin etiqueta');
+  });
+  return m;
+}
+function updSigCount(){ $('#sigCount').textContent = parseSigs().size + ' firmas'; }
+updSigCount();
+$('#saveSigs').onclick = () => { store.set('sigs', $('#signatures').value); updSigCount(); };
+$('#saveKeys').onclick = () => {
+  store.set('vtKey', $('#vtKey').value.trim());
+  store.set('uhKey', $('#uhKey').value.trim());
+  store.set('useVT', $('#useVT').checked ? '1' : '0');
+  store.set('useUH', $('#useUH').checked ? '1' : '0');
+};
+
+// ---------- Tipo real (magic bytes) ----------
+function detectType(u8){
+  if (!u8.length) return { fam:'EMPTY', label:'Archivo vacío' };
+  const s = (i, str) => [...str].every((c,k) => u8[i+k] === c.charCodeAt(0));
+  if (s(0,'MZ')){
+    if (u8.length > 0x40){
+      const dv = new DataView(u8.buffer, u8.byteOffset, u8.byteLength);
+      const pe = dv.getUint32(0x3c, true);
+      if (pe + 4 <= u8.length && u8[pe]===0x50 && u8[pe+1]===0x45 && u8[pe+2]===0 && u8[pe+3]===0)
+        return { fam:'PE', label:'PE (ejecutable de Windows)' };
+    }
+    return { fam:'PE', label:'MZ/DOS (ejecutable)' };
+  }
+  if (u8[0]===0x7f && s(1,'ELF')) return { fam:'ELF', label:'ELF (ejecutable Linux)' };
+  if (s(0,'%PDF')) return { fam:'PDF', label:'PDF' };
+  if (u8[0]===0x50 && u8[1]===0x4b && (u8[2]===3 || u8[2]===5)) return { fam:'ZIP', label:'ZIP (o docx/xlsx/pptx/jar)' };
+  if (u8[0]===0xd0 && u8[1]===0xcf && u8[2]===0x11 && u8[3]===0xe0) return { fam:'OLE2', label:'OLE2 (Office antiguo)' };
+  if (u8[0]===0x89 && s(1,'PNG')) return { fam:'PNG', label:'PNG' };
+  if (u8[0]===0xff && u8[1]===0xd8 && u8[2]===0xff) return { fam:'JPEG', label:'JPEG' };
+  if (s(0,'GIF8')) return { fam:'GIF', label:'GIF' };
+  if (s(0,'BM') && u8.length > 14 && !u8[6] && !u8[7] && !u8[8] && !u8[9]) return { fam:'BMP', label:'BMP' };
+  if (u8[0]===0x1f && u8[1]===0x8b) return { fam:'GZIP', label:'GZIP' };
+  if (s(0,'Rar!')) return { fam:'RAR', label:'RAR' };
+  if (u8[0]===0x37 && u8[1]===0x7a && u8[2]===0xbc && u8[3]===0xaf) return { fam:'7Z', label:'7-Zip' };
+  if (s(0,'MSCF')) return { fam:'CAB', label:'CAB' };
+  if (s(0,'ITSF')) return { fam:'CHM', label:'CHM (ayuda compilada)' };
+  if (u8[0]===0x4c && !u8[1] && !u8[2] && !u8[3] && u8[4]===1 && u8[5]===0x14) return { fam:'LNK', label:'LNK (acceso directo)' };
+  if (/^[FCZ]WS$/.test(String.fromCharCode(u8[0],u8[1],u8[2]))) return { fam:'SWF', label:'SWF (Flash)' };
+  const n = Math.min(u8.length, 4096); let ctrl = 0, nul = 0;
+  for (let i = 0; i < n; i++){
+    const b = u8[i];
+    if (b === 0) nul++;
+    else if (b < 9 || (b > 13 && b < 32)) ctrl++;
+  }
+  if (!nul && ctrl / n < 0.02) return { fam:'TEXT', label:'Texto/Script' };
+  return { fam:'BIN', label:'Binario desconocido' };
 }
 
-// ---------- Persistencia ----------
-const DEFAULT_SIGS = [
-  'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  archivo vacío',
-  'b221d9dbb083a7f33428d7c2a3c3198ae925614d70210e28716ccaa7cd4ddb79  ejemplo: texto "hola"',
-  '655e786674d9d3e77bc05ed1de37b4b6bc89f788829f9f3c679e7687b410c89b  ejemplo: texto "prueba"'
-].join('\n');
+const EXT_FAMILY = {
+  exe:'PE', dll:'PE', scr:'PE', msi:'OLE2', ocx:'PE', cpl:'PE', sys:'PE',
+  pdf:'PDF', zip:'ZIP', docx:'ZIP', xlsx:'ZIP', pptx:'ZIP', jar:'ZIP',
+  png:'PNG', jpg:'JPEG', jpeg:'JPEG', gif:'GIF', bmp:'BMP',
+  rar:'RAR', '7z':'7Z', gz:'GZIP', lnk:'LNK', chm:'CHM', cab:'CAB',
+  doc:'OLE2', xls:'OLE2', ppt:'OLE2',
+  txt:'TEXT', js:'TEXT', ps1:'TEXT', vbs:'TEXT', bat:'TEXT', cmd:'TEXT',
+  html:'TEXT', htm:'TEXT', json:'TEXT', xml:'TEXT', csv:'TEXT', php:'TEXT', py:'TEXT'
+};
 
-$('signatures').value = localStorage.getItem('sigs') ?? DEFAULT_SIGS;
-$('vtKey').value = localStorage.getItem('vtKey') ?? '';
-$('useVT').checked = localStorage.getItem('useVT') === '1';
-$('uhKey').value = localStorage.getItem('uhKey') ?? '';
-$('useUH').checked = localStorage.getItem('useUH') === '1';
-updateSigCount();
-
-function updateSigCount(){
-  const n = $('signatures').value.split('\n').map(s => s.trim()).filter(Boolean).length;
-  $('sigCount').textContent = n + ' firma(s)';
+// ---------- Entropía ----------
+function entropy(u8, max = 5000000){
+  const n = Math.min(u8.length, max);
+  if (!n) return 0;
+  const c = new Uint32Array(256);
+  for (let i = 0; i < n; i++) c[u8[i]]++;
+  let h = 0;
+  for (const v of c) if (v){ const p = v / n; h -= p * Math.log2(p); }
+  return h;
 }
-$('saveSigs').onclick = () => { localStorage.setItem('sigs', $('signatures').value); updateSigCount(); };
-$('saveVT').onclick = () => {
-  localStorage.setItem('vtKey', $('vtKey').value.trim());
-  localStorage.setItem('useVT', $('useVT').checked ? '1' : '0');
-};
-$('saveUH').onclick = () => {
-  localStorage.setItem('uhKey', $('uhKey').value.trim());
-  localStorage.setItem('useUH', $('useUH').checked ? '1' : '0');
+
+// ---------- PE ----------
+const SUSP_SEC = /^(upx\d|\.?aspack|\.?adata|\.themida|\.vmp\d|\.petite|\.nsp\d|\.mpress|\.enigma)/i;
+const API_INJECT = ['VirtualAllocEx','WriteProcessMemory','CreateRemoteThread','NtUnmapViewOfSection','QueueUserAPC','SetThreadContext','NtWriteVirtualMemory','RtlCreateUserThread'];
+const API_OTHER = ['URLDownloadToFile','InternetOpenUrl','WinExec','ShellExecute','SetWindowsHookEx','GetAsyncKeyState','IsDebuggerPresent','CryptEncrypt','RegSetValueEx','AdjustTokenPrivileges'];
+function parsePE(u8){
+  const out = [];
+  try {
+    const dv = new DataView(u8.buffer, u8.byteOffset, u8.byteLength);
+    const pe = dv.getUint32(0x3c, true);
+    if (pe + 24 < u8.length && u8[pe] === 0x50){
+      const nSec = dv.getUint16(pe+6, true), optSize = dv.getUint16(pe+20, true);
+      let p = pe + 24 + optSize;
+      const weird = [], wx = [], hi = [];
+      for (let i = 0; i < nSec && p + 40 <= u8.length; i++, p += 40){
+        const name = new TextDecoder('latin1').decode(u8.slice(p, p+8)).replace(/\0+$/, '');
+        const rawSize = dv.getUint32(p+16, true), rawPtr = dv.getUint32(p+20, true), flags = dv.getUint32(p+36, true);
+        if (SUSP_SEC.test(name)) weird.push(name);
+        if ((flags & 0x20000000) && (flags & 0x80000000)) wx.push(name);
+        if (rawSize > 1024 && rawPtr + rawSize <= u8.length && entropy(u8.subarray(rawPtr, rawPtr + rawSize)) > 7.2) hi.push(name);
+      }
+      if (weird.length) out.push({ level:'warn', text:`secciones de empaquetador: ${weird.join(', ')}` });
+      if (wx.length) out.push({ level:'warn', text:`secciones escribibles y ejecutables: ${wx.join(', ')}` });
+      if (hi.length) out.push({ level:'warn', text:`secciones con entropía alta: ${hi.join(', ')}` });
+    }
+  } catch {}
+  const txt = new TextDecoder('latin1').decode(u8.subarray(0, Math.min(u8.length, 20000000)));
+  const inj = API_INJECT.filter(a => txt.includes(a));
+  const oth = API_OTHER.filter(a => txt.includes(a));
+  if (inj.length >= 3) out.push({ level:'bad', text:`APIs de inyección de procesos: ${inj.join(', ')}` });
+  else if (inj.length) out.push({ level:'warn', text:`APIs sensibles: ${inj.join(', ')}` });
+  if (oth.length >= 3) out.push({ level:'warn', text:`varias APIs de red/sistema: ${oth.join(', ')}` });
+  return out;
+}
+
+// ---------- Scripts / texto ----------
+const TEXT_RULES = [
+  [/-enc(odedcommand)?\s+[A-Za-z0-9+\/=]{20,}/i, 'bad', 'PowerShell con comando codificado'],
+  [/certutil\s+.*-urlcache/i, 'bad', 'certutil descargando archivos'],
+  [/FromBase64String/i, 'warn', 'decodifica Base64 (FromBase64String)'],
+  [/\b(Invoke-Expression|iex)\b/i, 'warn', 'ejecución dinámica (Invoke-Expression/iex)'],
+  [/DownloadString|DownloadFile|Net\.WebClient|Invoke-WebRequest|bitsadmin/i, 'warn', 'descarga de contenido remoto'],
+  [/WScript\.Shell|Scripting\.FileSystemObject|ActiveXObject/i, 'warn', 'objetos de Windows Script Host'],
+  [/\beval\s*\(/i, 'warn', 'uso de eval()'],
+  [/unescape\s*\(|String\.fromCharCode/i, 'warn', 'ofuscación (unescape / fromCharCode)'],
+  [/[A-Za-z0-9+\/=]{600,}/, 'warn', 'bloque largo en Base64']
+];
+function analyzeText(t){ return TEXT_RULES.filter(r => r[0].test(t)).map(r => ({ level:r[1], text:r[2] })); }
+
+// ---------- ZIP / Office ----------
+function parseZip(u8){
+  let eocd = -1;
+  for (let i = u8.length - 22; i >= Math.max(0, u8.length - 65557); i--){
+    if (u8[i]===0x50 && u8[i+1]===0x4b && u8[i+2]===0x05 && u8[i+3]===0x06){ eocd = i; break; }
+  }
+  if (eocd === -1) return null;
+  const dv = new DataView(u8.buffer, u8.byteOffset, u8.byteLength);
+  const n = dv.getUint16(eocd+10, true);
+  let p = dv.getUint32(eocd+16, true);
+  const entries = [];
+  for (let i = 0; i < n; i++){
+    if (p + 46 > u8.length) break;
+    if (!(u8[p]===0x50 && u8[p+1]===0x4b && u8[p+2]===0x01 && u8[p+3]===0x02)) break;
+    const nameLen = dv.getUint16(p+28, true);
+    const extraLen = dv.getUint16(p+30, true);
+    const commentLen = dv.getUint16(p+32, true);
+    entries.push({
+      name: new TextDecoder('utf-8').decode(u8.slice(p+46, p+46+nameLen)),
+      method: dv.getUint16(p+10, true),
+      cSize: dv.getUint32(p+20, true),
+      uSize: dv.getUint32(p+24, true),
+      localOff: dv.getUint32(p+42, true),
+      encrypted: (dv.getUint16(p+8, true) & 1) !== 0
+    });
+    p += 46 + nameLen + extraLen + commentLen;
+  }
+  return { entries };
+}
+async function zipEntryData(u8, e){
+  const dv = new DataView(u8.buffer, u8.byteOffset, u8.byteLength);
+  const nameLen = dv.getUint16(e.localOff+26, true);
+  const extraLen = dv.getUint16(e.localOff+28, true);
+  const start = e.localOff + 30 + nameLen + extraLen;
+  const raw = u8.slice(start, start + e.cSize);
+  if (e.method === 0) return raw;
+  if (e.method === 8){
+    try {
+      const ds = new DecompressionStream('deflate-raw');
+      return new Uint8Array(await new Response(new Blob([raw]).stream().pipeThrough(ds)).arrayBuffer());
+    } catch { return null; }
+  }
+  return null;
+}
+function analyzeZip(zip, fileSize){
+  const out = [];
+  const totalU = zip.entries.reduce((a,e) => a + e.uSize, 0);
+  const totalC = Math.max(zip.entries.reduce((a,e) => a + e.cSize, 0), 1);
+  const ratio = (totalU / totalC).toFixed(0);
+  if (totalU > fileSize * 100 && totalU > 100 * 1024 * 1024)
+    out.push({ level:'bad', text:`posible zip bomb (ratio ${ratio}:1, ${fmtSize(totalU)} descomprimido)` });
+  else if (totalU > fileSize * 10 && totalU > 10 * 1024 * 1024)
+    out.push({ level:'warn', text:`alta compresión (ratio ${ratio}:1)` });
+  const exeExt = /\.(exe|dll|scr|bat|cmd|ps1|vbs|js|msi|lnk|jar|hta|sct|cpl)$/i;
+  const nested = zip.entries.filter(e => exeExt.test(e.name));
+  if (nested.length) out.push({ level:'warn', text:`contiene ejecutables/scripts: ${nested.slice(0,5).map(e => e.name).join(', ')}` });
+  const enc = zip.entries.filter(e => e.encrypted);
+  if (enc.length) out.push({ level:'warn', text:`${enc.length} entrada(s) protegidas con contraseña` });
+  if (zip.entries.length > 5000) out.push({ level:'warn', text:`${zip.entries.length} entradas (muchas)` });
+  return out;
+}
+async function analyzeOffice(u8, zip){
+  const out = [];
+  if (zip.entries.some(e => /vbaProject\.bin$/i.test(e.name))) out.push({ level:'warn', text:'contiene macros (vbaProject.bin)' });
+  for (const e of zip.entries){
+    if (/word\/document\.xml$|xl\/worksheets\/sheet\d+\.xml$/i.test(e.name) && e.cSize < 5000000){
+      const data = await zipEntryData(u8, e);
+      if (data && /\bDDE(AUTO)?\b/i.test(new TextDecoder('utf-8').decode(data.slice(0, 500000)))){
+        out.push({ level:'bad', text:'contiene DDE (autoejecución al abrir)' });
+        break;
+      }
+    }
+  }
+  return out;
+}
+
+// ---------- URLs ----------
+const SHORT = new Set(['bit.ly','tinyurl.com','t.co','goo.gl','ow.ly','is.gd','buff.ly','cutt.ly','rebrand.ly','shorturl.at','tiny.cc','rb.gy']);
+const RISK_TLD = new Set(['zip','mov','xyz','top','tk','ml','ga','cf','gq','click','country','work','support','rest','cyou','icu','buzz','monster']);
+const withScheme = u => /^[a-z][a-z0-9+.-]*:\/\//i.test(u) ? u : 'http://' + u;
+function checkLocal(u){
+  let url;
+  try { url = new URL(withScheme(u)); } catch { return ['URL inválida']; }
+  const issues = [], h = url.hostname.toLowerCase();
+  if (/^\d{1,3}(\.\d{1,3}){3}$/.test(h) || h.startsWith('[')) issues.push('usa una IP directa en lugar de un dominio');
+  if (h.split('.').some(p => p.startsWith('xn--'))) issues.push('dominio punycode (posible suplantación con caracteres parecidos)');
+  if (SHORT.has(h)) issues.push('acortador de links (oculta el destino)');
+  const tld = h.split('.').pop();
+  if (RISK_TLD.has(tld)) issues.push(`TLD de riesgo (.${tld})`);
+  if (url.username || url.password) issues.push('credenciales dentro de la URL (truco de engaño)');
+  if (h.split('.').length > 5) issues.push('demasiados subdominios');
+  if (url.port && !['80','443'].includes(url.port)) issues.push(`puerto inusual (${url.port})`);
+  if (!['http:','https:'].includes(url.protocol)) issues.push(`protocolo inusual (${url.protocol})`);
+  if (u.length > 200) issues.push('URL muy larga');
+  return issues;
+}
+function extractUrls(text){
+  const re = /https?:\/\/[^\s"'<>()\[\]]{6,300}/gi;
+  return [...new Set(text.match(re) || [])];
+}
+
+// ---------- Análisis local de un archivo ----------
+async function localAnalyze(file, u8){
+  const findings = [];
+  const type = detectType(u8);
+  const ext = (file.name.split('.').pop() || '').toLowerCase();
+  const expected = EXT_FAMILY[ext], actual = type.fam;
+
+  if (expected && expected !== actual && actual !== 'EMPTY' && !(expected === 'TEXT' && actual === 'BIN'))
+    findings.push({ level: ['PE','ELF','LNK','CHM','SWF'].includes(actual) ? 'bad' : 'warn',
+                    text:`la extensión .${ext} no coincide con el tipo real: ${type.label}` });
+
+  if (!['ZIP','PNG','JPEG','GZIP','RAR','7Z','CAB','GIF','PDF','EMPTY'].includes(actual)){
+    const e = entropy(u8);
+    if (e > 7.8) findings.push({ level:'warn', text:`entropía muy alta (${e.toFixed(2)}/8): empaquetado o cifrado` });
+  }
+
+  let text = '';
+  if (actual === 'TEXT'){
+    text = new TextDecoder('utf-8', { fatal:false }).decode(u8.subarray(0, 2000000));
+    findings.push(...analyzeText(text));
+  }
+  if (actual === 'PE') findings.push(...parsePE(u8));
+  if (actual === 'PDF'){
+    text = new TextDecoder('latin1').decode(u8.subarray(0, 5000000));
+    if (/\/Launch\b/.test(text)) findings.push({ level:'bad', text:'PDF con acción /Launch (puede ejecutar programas)' });
+    if (/\/(JavaScript|JS)\b/.test(text)) findings.push({ level:'warn', text:'PDF con JavaScript' });
+    if (/\/(OpenAction|AA)\b/.test(text)) findings.push({ level:'warn', text:'PDF con acción automática al abrir' });
+    if (/\/EmbeddedFile\b/.test(text)) findings.push({ level:'warn', text:'PDF con archivos incrustados' });
+  }
+  if (actual === 'ZIP'){
+    const zip = parseZip(u8);
+    if (zip){
+      findings.push(...analyzeZip(zip, file.size));
+      if (/\.(docx|xlsx|pptx)$/i.test(file.name)) findings.push(...await analyzeOffice(u8, zip));
+    }
+  }
+  if (actual === 'OLE2' && /\.(doc|xls|ppt)$/i.test(file.name))
+    findings.push({ level:'warn', text:'Office antiguo (OLE2): puede contener macros' });
+
+  if (text){
+    const urlIssues = extractUrls(text).map(u => ({ u, issues: checkLocal(u) }))
+      .filter(x => x.issues.length && !x.issues.includes('URL inválida'));
+    if (urlIssues.length)
+      findings.push({ level:'warn', text:`URLs embebidas sospechosas: ${urlIssues.slice(0,3).map(x => x.u).join(', ')}` });
+  }
+  return { type, findings };
+}
+
+// ---------- VirusTotal / URLhaus ----------
+async function vtFetch(path){
+  const r = await fetch('https://www.virustotal.com/api/v3/' + path, { headers:{ 'x-apikey': $('#vtKey').value.trim() } });
+  if (r.status === 404) return { nf:true };
+  if (!r.ok) throw new Error('HTTP ' + r.status);
+  const s = (await r.json()).data.attributes.last_analysis_stats || {};
+  return { mal: s.malicious || 0, sus: s.suspicious || 0, tot: Object.values(s).reduce((a,b) => a + b, 0) };
+}
+const vtUrlId = u => btoa(String.fromCharCode(...new TextEncoder().encode(u))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+async function uhFetch(url){
+  const key = $('#uhKey').value.trim();
+  const headers = { 'Content-Type':'application/x-www-form-urlencoded' };
+  if (key) headers['Auth-Key'] = key;
+  const r = await fetch('https://urlhaus-api.abuse.ch/v1/url/', { method:'POST', headers, body:'url=' + encodeURIComponent(url) });
+  if (!r.ok) throw new Error('HTTP ' + r.status);
+  const j = await r.json();
+  if (j.query_status === 'no_results') return { nf:true };
+  if (j.query_status === 'ok') return { listed:true, status:j.url_status, threat:j.threat };
+  throw new Error(j.query_status);
+}
+
+// ---------- Escaneo de archivos ----------
+const st = { n:0, ok:0, warn:0, bad:0, skip:0 };
+function updSummary(){
+  $('#summary').innerHTML = `<b>${st.n}</b> analizados · <b class="s-ok">${st.ok}</b> limpios · <b class="s-warn">${st.warn}</b> sospechosos · <b class="s-bad">${st.bad}</b> con alertas` + (st.skip ? ` · ${st.skip} omitidos` : '');
+}
+const LV = {
+  ok:   ['b-ok',   '✅ Limpio',                        'r-ok'],
+  warn: ['b-warn', '❓ Sospechoso',                    'r-warn'],
+  bad:  ['b-bad',  '🦠 Malicioso / Señales locales',   'r-bad']
 };
 
-// ---------- Archivos ----------
-const dz = $('dropzone'), fi = $('fileInput'), di = $('dirInput');
+async function scanFile(f){
+  const tr = el('tr', 'r-mut');
+  const tdName = el('td', '', f._path || f.webkitRelativePath || f.name);
+  const tdSize = el('td', '', fmtSize(f.size));
+  const tdHash = el('td', 'hash', 'calculando…');
+  const tdRes = el('td');
+  tr.append(tdName, tdSize, tdHash, tdRes);
+  $('#tbody').append(tr);
+  $('#results').hidden = false;
+
+  if (f.size > MAX_SIZE){
+    tdHash.textContent = '—';
+    tdRes.append(el('span', 'badge b-mut', 'Omitido: demasiado grande'));
+    st.skip++; updSummary(); return;
+  }
+  try {
+    const u8 = new Uint8Array(await f.arrayBuffer());
+    const sha = toHex(await crypto.subtle.digest('SHA-256', u8));
+    tdHash.textContent = sha;
+    const local = await localAnalyze(f, u8);
+
+    const det = el('div', 'fdet');
+    const add = (lv, t) => det.append(el('span', 'f ' + lv, ({ bad:'🔴 ', warn:'🟡 ', ok:'🟢 ' }[lv] || '⚪ ') + t));
+    add('mut', 'Tipo real: ' + local.type.label);
+    local.findings.forEach(x => add(x.level, x.text));
+
+    let level = local.findings.some(x => x.level === 'bad') ? 'bad' : local.findings.some(x => x.level === 'warn') ? 'warn' : 'ok';
+    let label = null;
+
+    const sigs = parseSigs();
+    if (sigs.has(sha)){ level = 'bad'; label = '⚠️ Firma conocida'; add('bad', 'Coincide con tu firma: ' + sigs.get(sha)); }
+
+    if ($('#useVT').checked && $('#vtKey').value.trim()){
+      try {
+        const v = await vtFetch('files/' + sha);
+        if (v.nf) add('mut', 'No está en VirusTotal');
+        else if (v.mal > 0){ level = 'bad'; add('bad', `VirusTotal: ${v.mal}/${v.tot} motores lo marcan malicioso`); }
+        else if (v.sus > 0){ if (level === 'ok') level = 'warn'; add('warn', `VirusTotal: ${v.sus}/${v.tot} motores lo marcan sospechoso`); }
+        else add('ok', `VirusTotal: 0/${v.tot} detecciones`);
+      } catch (e){ add('mut', 'VirusTotal: error (' + e.message + ')'); }
+    }
+
+    const [bc, bt, rc] = LV[level];
+    tdRes.append(el('span', 'badge ' + bc, label || bt), det);
+    tr.className = rc;
+    st[level]++;
+  } catch (e){
+    tdHash.textContent = '—';
+    tdRes.append(el('span', 'badge b-mut', 'Error: ' + e.message));
+    st.skip++;
+  }
+  st.n++; updSummary();
+}
+
+let queue = Promise.resolve();
+function enqueue(files){ queue = queue.then(async () => { for (const f of files) await scanFile(f); }); }
+
+// ---------- Arrastrar y soltar / selección ----------
+async function readEntry(entry, path = ''){
+  if (entry.isFile) return new Promise(res => entry.file(f => { f._path = path + f.name; res([f]); }, () => res([])));
+  if (entry.isDirectory){
+    const rd = entry.createReader(); let all = [];
+    for (;;){
+      const batch = await new Promise(res => rd.readEntries(res, () => res([])));
+      if (!batch.length) break;
+      all = all.concat(batch);
+    }
+    return (await Promise.all(all.map(e => readEntry(e, path + entry.name + '/')))).flat();
+  }
+  return [];
+}
+const dz = $('#dropzone');
+dz.onclick = () => $('#fileInput').click();
+$('#pickFolder').onclick = e => { e.stopPropagation(); $('#folderInput').click(); };
 ['dragenter','dragover'].forEach(ev => dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.add('drag'); }));
 ['dragleave','drop'].forEach(ev => dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.remove('drag'); }));
 dz.addEventListener('drop', async e => {
   const entries = [...e.dataTransfer.items].map(i => i.webkitGetAsEntry && i.webkitGetAsEntry()).filter(Boolean);
-  if (entries.length) handleEntries(entries);
-  else handleFiles(e.dataTransfer.files);
+  const files = entries.length ? (await Promise.all(entries.map(en => readEntry(en)))).flat() : [...e.dataTransfer.files];
+  enqueue(files);
 });
-dz.addEventListener('click', () => fi.click());
-fi.addEventListener('change', () => { handleFiles(fi.files); fi.value=''; });
-di.addEventListener('change', () => { handleFiles(di.files); di.value=''; });
-$('pickDir').onclick = () => di.click();
-
-async function handleEntries(entries){
-  const files = [];
-  for (const entry of entries){
-    if (entry.isFile) files.push(await new Promise(r => entry.file(r)));
-    else if (entry.isDirectory) files.push(...await readDir(entry));
-  }
-  if (files.length) handleFiles(files);
-}
-function readDir(dir){
-  return new Promise(res => {
-    const out = [];
-    const reader = dir.createReader();
-    const walk = () => reader.readEntries(async batch => {
-      if (!batch.length) return res(out);
-      for (const e of batch){
-        if (e.isFile) out.push(await new Promise(r => e.file(r)));
-        else if (e.isDirectory) out.push(...await readDir(e));
-      }
-      walk();
-    });
-    walk();
-  });
-}
-
-async function sha256Hex(file){
-  const buf = await file.arrayBuffer();
-  const d = await crypto.subtle.digest('SHA-256', buf);
-  return [...new Uint8Array(d)].map(b => b.toString(16).padStart(2,'0')).join('');
-}
-function fmtSize(b){
-  if (b < 1024) return b + ' B';
-  if (b < 1048576) return (b/1024).toFixed(1) + ' KB';
-  if (b < 1073741824) return (b/1048576).toFixed(1) + ' MB';
-  return (b/1073741824).toFixed(2) + ' GB';
-}
-function parseSigs(){
-  const map = {};
-  for (const line of $('signatures').value.split('\n')){
-    const t = line.trim(); if (!t) continue;
-    const [h, ...rest] = t.split(/\s+/);
-    if (/^[a-f0-9]{64}$/i.test(h)) map[h.toLowerCase()] = rest.join(' ') || 'firma conocida';
-  }
-  return map;
-}
-async function queryVT(hash){
-  const r = await fetch('https://www.virustotal.com/api/v3/files/' + hash, {
-    headers: { 'x-apikey': $('vtKey').value.trim() }
-  });
-  if (r.status === 404) return { nf: true };
-  if (r.status === 429) throw new Error('límite de peticiones de VirusTotal');
-  if (!r.ok) throw new Error('VirusTotal HTTP ' + r.status);
-  return (await r.json()).data.attributes;
-}
-function esc(s){ return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
-
-async function handleFiles(files){
-  if (!crypto.subtle){ alert('Tu navegador no permite crypto.subtle. Ábrelo por https o desde localhost.'); return; }
-  const sigs = parseSigs();
-  const useVT = $('useVT').checked && $('vtKey').value.trim();
-  const tbody = $('tbody');
-  $('results').hidden = false;
-  for (const file of files){
-    const tr = document.createElement('tr');
-    tr.innerHTML = `<td>${esc(file.name)}</td><td>${fmtSize(file.size)}</td><td class="hash">calculando…</td><td><span class="badge b-info">…</span></td>`;
-    tbody.appendChild(tr);
-    try {
-      const hash = await sha256Hex(file);
-      tr.children[2].textContent = hash;
-      let badge, status = 'ok';
-      if (sigs[hash]){
-        status = 'bad';
-        badge = `<span class="badge b-bad">⚠️ Firma: ${esc(sigs[hash])}</span>`;
-      } else if (useVT){
-        try {
-          const a = await queryVT(hash);
-          const link = `<a href="${a.permalink || 'https://www.virustotal.com/gui/file/' + hash}" target="_blank">ver</a>`;
-          if (a.nf){ status = 'mut'; badge = `<span class="badge b-mut">No en VirusTotal</span> ${link}`; }
-          else {
-            const s = a.last_analysis_stats;
-            if (s.malicious > 0){ status = 'bad'; badge = `<span class="badge b-bad">🦠 ${s.malicious} motores lo marcan</span> ${link}`; }
-            else if (s.suspicious > 0){ status = 'warn'; badge = `<span class="badge b-warn">❓ ${s.suspicious} sospechosos</span> ${link}`; }
-            else badge = `<span class="badge b-ok">✅ Limpio en VT</span> ${link}`;
-          }
-        } catch (e){ status = 'mut'; badge = `<span class="badge b-mut">VT: ${esc(e.message)}</span>`; }
-      } else {
-        badge = `<span class="badge b-ok">✅ Sin firma local</span>`;
-      }
-      tr.children[3].innerHTML = badge;
-      tr.classList.add('r-' + status);
-    } catch (e){
-      tr.children[3].innerHTML = `<span class="badge b-mut">Error: ${esc(e.message)}</span>`;
-      tr.classList.add('r-mut');
-    }
-    updateSummary();
-  }
-}
-function updateSummary(){
-  const rows = [...document.querySelectorAll('#tbody tr')];
-  if (!rows.length){ $('summary').textContent = ''; return; }
-  const bad = rows.filter(r => r.classList.contains('r-bad')).length;
-  const warn = rows.filter(r => r.classList.contains('r-warn')).length;
-  const ok = rows.filter(r => r.classList.contains('r-ok')).length;
-  $('summary').innerHTML = `${rows.length} archivo(s) · <b class="s-ok">${ok} limpios</b> · <b class="s-warn">${warn} sospechosos</b> · <b class="s-bad">${bad} con firma</b>`;
-}
-$('clear').onclick = () => { $('tbody').innerHTML = ''; $('results').hidden = true; $('summary').textContent = ''; };
-
-// ---------- Links ----------
-const SHORTENERS = ['bit.ly','tinyurl.com','t.co','goo.gl','is.gd','rb.gy','cutt.ly','ow.ly','buff.ly','t.ly','s.id','clck.ru','lnkd.g','shorturl.at','rebrand.ly'];
-const BAD_TLDS = ['xyz','top','click','link','gq','tk','ml','cf','ga','zip','mov','rest','cam','work','quest','ltd','icu','cfd','buzz','monster','wtf'];
-
-function checkLocal(raw){
-  const issues = [];
-  let u;
-  try { u = new URL(raw); } catch { return ['URL inválida']; }
-  if (u.protocol === 'http:') issues.push('sin HTTPS');
-  if (/^\d{1,3}(\.\d{1,3}){3}$/.test(u.hostname)) issues.push('IP directa');
-  if (u.hostname.startsWith('xn--')) issues.push('punycode (posible homoglifo)');
-  const host = u.hostname.toLowerCase();
-  if (SHORTENERS.some(s => host === s || host.endsWith('.' + s))) issues.push('acortador de enlaces');
-  const tld = host.split('.').pop();
-  if (BAD_TLDS.includes(tld)) issues.push('TLD de riesgo: .' + tld);
-  if (u.hostname.split('.').length > 4) issues.push('muchos subdominios');
-  if (u.username || u.password) issues.push('credenciales en la URL');
-  if (u.pathname.length > 200 || /[A-Za-z0-9+/]{100,}={0,2}/.test(u.pathname + u.search)) issues.push('payload largo en la ruta');
-  return issues;
-}
-
-async function queryVTUrl(url){
-  const r = await fetch('https://www.virustotal.com/api/v3/urls/' + encodeURIComponent(url), {
-    headers: { 'x-apikey': $('vtKey').value.trim() }
-  });
-  if (r.status === 404) return { nf: true };
-  if (r.status === 429) throw new Error('límite de peticiones de VirusTotal');
-  if (!r.ok) throw new Error('VirusTotal HTTP ' + r.status);
-  return (await r.json()).data.attributes;
-}
-
-async function queryUrlhaus(url){
-  const r = await fetch('https://urlhaus-api.abuse.ch/v1/url/', {
-    method: 'POST',
-    headers: { 'Auth-Key': $('uhKey').value.trim(), 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: 'url=' + encodeURIComponent(url)
-  });
-  if (!r.ok) throw new Error('URLhaus HTTP ' + r.status);
-  return r.json();
-}
-
-$('scanUrls').onclick = async () => {
-  const urls = $('urls').value.split('\n').map(s => s.trim()).filter(Boolean);
-  if (!urls.length) return;
-  const useVT = $('useVT').checked && $('vtKey').value.trim();
-  const useUH = $('useUH').checked && $('uhKey').value.trim();
-  const tbody = $('urlTbody');
-  $('urlResults').hidden = false;
-  for (const url of urls){
-    const tr = document.createElement('tr');
-    tr.innerHTML = `<td class="urlcell">${esc(url)}</td><td><span class="badge b-info">…</span></td><td>—</td><td>—</td>`;
-    tbody.appendChild(tr);
-    const issues = checkLocal(url);
-    let localStatus = 'ok';
-    if (issues.includes('URL inválida')) localStatus = 'bad';
-    else if (issues.length) localStatus = 'warn';
-    tr.children[1].innerHTML = issues.length
-      ? `<span class="badge b-warn">❓ ${issues.length} señal(es)</span><div class="hash">${esc(issues.join(' · '))}</div>`
-      : `<span class="badge b-ok">✅ Sin señales</span>`;
-    let worst = localStatus;
-    if (useVT){
-      try {
-        const a = await queryVTUrl(url);
-        if (a.nf) tr.children[2].innerHTML = `<span class="badge b-mut">No en VT</span>`;
-        else {
-          const s = a.last_analysis_stats;
-          const link = `<a href="https://www.virustotal.com/gui/url/${a.id}" target="_blank">ver</a>`;
-          if (s.malicious > 0){ worst = 'bad'; tr.children[2].innerHTML = `<span class="badge b-bad">🦠 ${s.malicious} motores</span> ${link}`; }
-          else if (s.suspicious > 0){ worst = worst==='bad' ? 'bad' : 'warn'; tr.children[2].innerHTML = `<span class="badge b-warn">❓ ${s.suspicious} sospechosos</span> ${link}`; }
-          else tr.children[2].innerHTML = `<span class="badge b-ok">✅ Limpio en VT</span> ${link}`;
-        }
-      } catch (e){ tr.children[2].innerHTML = `<span class="badge b-mut">VT: ${esc(e.message)}</span>`; }
-    }
-    if (useUH){
-      try {
-        const j = await queryUrlhaus(url);
-        if (j.url_status === 'malicious'){ worst = 'bad'; tr.children[3].innerHTML = `<span class="badge b-bad">🦠 Malicioso: ${esc(j.threat || 'sin tipo')}</span>`; }
-        else if (j.url_status === 'clean') tr.children[3].innerHTML = `<span class="badge b-ok">✅ Limpio en URLhaus</span>`;
-        else tr.children[3].innerHTML = `<span class="badge b-mut">No en URLhaus</span>`;
-      } catch (e){ tr.children[3].innerHTML = `<span class="badge b-mut">URLhaus: ${esc(e.message)}</span>`; }
-    }
-    tr.classList.add('r-' + worst);
-    updateUrlSummary();
-  }
+$('#fileInput').onchange = e => { enqueue([...e.target.files]); e.target.value = ''; };
+$('#folderInput').onchange = e => { enqueue([...e.target.files]); e.target.value = ''; };
+$('#clear').onclick = () => {
+  $('#tbody').innerHTML = ''; $('#results').hidden = true; $('#summary').textContent = '';
+  Object.assign(st, { n:0, ok:0, warn:0, bad:0, skip:0 });
 };
 
-function updateUrlSummary(){
-  const rows = [...document.querySelectorAll('#urlTbody tr')];
-  if (!rows.length){ $('urlSummary').textContent = ''; return; }
-  const bad = rows.filter(r => r.classList.contains('r-bad')).length;
-  const warn = rows.filter(r => r.classList.contains('r-warn')).length;
-  const ok = rows.filter(r => r.classList.contains('r-ok')).length;
-  $('urlSummary').innerHTML = `${rows.length} URL(s) · <b class="s-ok">${ok} limpias</b> · <b class="s-warn">${warn} con señales</b> · <b class="s-bad">${bad} maliciosas</b>`;
+// ---------- Escaneo de links ----------
+const ust = { n:0, ok:0, warn:0, bad:0 };
+function updUrlSummary(){
+  $('#urlSummary').innerHTML = `<b>${ust.n}</b> analizados · <b class="s-ok">${ust.ok}</b> sin señales · <b class="s-warn">${ust.warn}</b> sospechosos · <b class="s-bad">${ust.bad}</b> maliciosos`;
 }
-$('clearUrls').onclick = () => { $('urlTbody').innerHTML = ''; $('urlResults').hidden = true; $('urlSummary').textContent = ''; };
+const ULV = { ok:['b-ok','✅ Sin señales','r-ok'], warn:['b-warn','❓ Sospechoso','r-warn'], bad:['b-bad','🦠 Malicioso','r-bad'] };
+
+async function scanUrl(u){
+  const tr = el('tr', 'r-mut');
+  const tdU = el('td', 'urlcell', u), tdL = el('td'), tdV = el('td', '', '—'), tdH = el('td', '', '—'), tdR = el('td');
+  tr.append(tdU, tdL, tdV, tdH, tdR);
+  $('#urlBody').append(tr); $('#urlResults').hidden = false;
+
+  const issues = checkLocal(u);
+  if (issues[0] === 'URL inválida'){
+    tdL.textContent = 'URL inválida';
+    tdR.append(el('span', 'badge b-mut', 'URL inválida'));
+    return;
+  }
+  const det = el('div', 'fdet');
+  if (issues.length) issues.forEach(i => det.append(el('span', 'f warn', '🟡 ' + i)));
+  else det.append(el('span', 'f ok', '🟢 sin señales locales'));
+  tdL.append(det);
+
+  let level = issues.length ? 'warn' : 'ok';
+  const full = withScheme(u);
+
+  if ($('#useVT').checked && $('#vtKey').value.trim()){
+    try {
+      const v = await vtFetch('urls/' + vtUrlId(full));
+      if (v.nf) tdV.textContent = 'No en VirusTotal';
+      else {
+        tdV.textContent = `${v.mal}/${v.tot} malicioso · ${v.sus} sospechoso`;
+        if (v.mal > 0) level = 'bad'; else if (v.sus > 0 && level === 'ok') level = 'warn';
+      }
+    } catch (e){ tdV.textContent = 'Error (' + e.message + ')'; }
+  }
+  if ($('#useUH').checked){
+    try {
+      const h = await uhFetch(full);
+      if (h.nf) tdH.textContent = 'No en URLhaus';
+      else { tdH.textContent = `Registrada (${h.status || '?'}${h.threat ? ', ' + h.threat : ''})`; level = 'bad'; }
+    } catch (e){ tdH.textContent = 'Error (' + e.message + ')'; }
+  }
+  const [bc, bt, rc] = ULV[level];
+  tdR.append(el('span', 'badge ' + bc, bt));
+  tr.className = rc;
+  ust[level]++; ust.n++; updUrlSummary();
+}
+$('#scanUrls').onclick = async () => {
+  const list = [...new Set($('#urls').value.split(/\s+/).map(s => s.trim()).filter(Boolean))];
+  for (const u of list) await scanUrl(u);
+};
+$('#clearUrls').onclick = () => {
+  $('#urlBody').innerHTML = ''; $('#urlResults').hidden = true; $('#urlSummary').textContent = '';
+  Object.assign(ust, { n:0, ok:0, warn:0, bad:0 });
+};
 </script>
 </body>
 </html>
