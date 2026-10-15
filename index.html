@@ -21,12 +21,15 @@ body{margin:0;font-family:'Segoe UI',system-ui,Roboto,sans-serif;background:line
 .hero h1 span{color:var(--accent)}
 .hero p{margin:12px auto 0;max-width:640px;color:var(--muted);font-size:15px;line-height:1.6}
 .how{max-width:1080px;margin:24px auto;padding:0 24px}
-.how-box{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:28px;box-shadow:var(--shadow)}
+.how-box{display:grid;grid-template-columns:1.15fr .85fr;gap:24px;align-items:center;background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:28px;box-shadow:var(--shadow)}
+@media(max-width:800px){.how-box{grid-template-columns:1fr}}
 .how-box h2{margin:0 0 14px;font-size:19px;display:flex;align-items:center;gap:10px}
 .how-box h2::before{content:'';width:4px;height:20px;background:var(--accent);border-radius:2px}
 .how-box h3{margin:16px 0 6px;font-size:14px;color:var(--accent2)}
 .how-box p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.65}
 .how-box p b{color:var(--text)}
+.how-img{display:flex;justify-content:center}
+.how-img img{max-width:100%;border-radius:12px;border:1px solid var(--border);box-shadow:var(--shadow)}
 .legend{list-style:none;margin:8px 0 0;padding:0}
 .legend li{margin:10px 0;font-size:13px;color:var(--muted);line-height:1.5;display:flex;align-items:flex-start;gap:12px}
 .legend li .badge{flex:none;min-width:190px;text-align:center}
@@ -86,24 +89,32 @@ footer{padding:28px 24px;color:var(--muted);font-size:12px;text-align:center;bor
 
 <section class="how">
   <div class="how-box">
-    <h2>Cómo funciona</h2>
-    <h3>📄 Archivos</h3>
-    <p><b>Análisis local</b> sin internet: tipo real (magic bytes), discrepancia extensión/tipo, entropía, secciones y APIs de PE, patrones de scripts, macros/DDE en Office, zip bomb y ejecutables anidados. Además calcula el <b>SHA-256</b> y lo compara con tus <b>firmas</b> y/o <b>VirusTotal</b> (opcional).</p>
-    <h3>🔗 Links</h3>
-    <p><b>Heurísticas locales</b> sin clave (IPs directas, punycode, acortadores, TLDs de riesgo, credenciales en la URL) + <b>VirusTotal</b> + <b>URLhaus</b> (claves gratuitas, opcionales).</p>
-    <h3>📊 Qué significa cada resultado</h3>
-    <ul class="legend">
-      <li><span class="badge b-ok">✅ Limpio / Sin señales</span><span><b>Archivos:</b> sin firma tuya, sin señales locales y (si consultas VT) ningún motor lo marca. <b>Links:</b> ninguna heurística local se activó.</span></li>
-      <li><span class="badge b-bad">⚠️ Firma conocida</span><span><b>Archivos:</b> el hash está en tu lista de firmas, o sea, un archivo que tú registraste como peligroso.</span></li>
-      <li><span class="badge b-bad">🦠 Malicioso / Señales locales</span><span>Al menos un motor de <b>VirusTotal</b> lo marca, <b>URLhaus</b> lo tiene registrado, o el <b>análisis local</b> encontró señales fuertes (APIs de inyección, DDE, zip bomb, extensión falsificada…).</span></li>
-      <li><span class="badge b-warn">❓ Sospechoso</span><span><b>Archivos:</b> señales locales moderadas (empaquetado, alta entropía, macros, URLs embebidas raras) o motores de VT sospechosos. <b>Links:</b> se activaron señales locales.</span></li>
-      <li><span class="badge b-mut">No en VirusTotal / URLhaus</span><span>No hay registro de ese hash o URL en la base. No significa que sea seguro: solo que nadie lo ha reportado.</span></li>
-      <li><span class="badge b-mut">Error / —</span><span>No se pudo consultar (sin API key, sin internet o límite de peticiones). El "—" significa que esa consulta no está activada.</span></li>
-    </ul>
-    <h3>✅ Uso</h3>
-    <p>Abre la página → arrastra archivos o pega URLs → (opcional) guarda tus API keys → revisa el resultado, que además tiñe la fila de verde, amarillo o rojo.</p>
-    <h3>⚠️ Limitaciones</h3>
-    <p>Solo escanea lo que tú le pegas (no el PC completo). Archivos muy grandes (&gt;512 MB) se omiten. El análisis es estático (no ejecuta nada), así que un malware empaquetado y "limpio" puede pasar. VT y URLhaus necesitan internet.</p>
+
+    <div>
+      <h2>Cómo funciona</h2>
+      <h3>📄 Archivos</h3>
+      <p><b>Análisis local</b> sin internet: tipo real (magic bytes), discrepancia extensión/tipo, entropía, secciones y APIs de PE, patrones de scripts, macros/DDE en Office, zip bomb y ejecutables anidados. Además calcula el <b>SHA-256</b> y lo compara con tus <b>firmas</b> y/o <b>VirusTotal</b> (opcional).</p>
+      <h3>🔗 Links</h3>
+      <p><b>Heurísticas locales</b> sin clave (IPs directas, punycode, acortadores, TLDs de riesgo, credenciales en la URL) + <b>VirusTotal</b> + <b>URLhaus</b> (claves gratuitas, opcionales).</p>
+      <h3>📊 Qué significa cada resultado</h3>
+      <ul class="legend">
+        <li><span class="badge b-ok">✅ Limpio / Sin señales</span><span><b>Archivos:</b> sin firma tuya, sin señales locales y (si consultas VT) ningún motor lo marca. <b>Links:</b> ninguna heurística local se activó.</span></li>
+        <li><span class="badge b-bad">⚠️ Firma conocida</span><span><b>Archivos:</b> el hash está en tu lista de firmas, o sea, un archivo que tú registraste como peligroso.</span></li>
+        <li><span class="badge b-bad">🦠 Malicioso / Señales locales</span><span>Al menos un motor de <b>VirusTotal</b> lo marca, <b>URLhaus</b> lo tiene registrado, o el <b>análisis local</b> encontró señales fuertes (APIs de inyección, DDE, zip bomb, extensión falsificada…).</span></li>
+        <li><span class="badge b-warn">❓ Sospechoso</span><span><b>Archivos:</b> señales locales moderadas (empaquetado, alta entropía, macros, URLs embebidas raras) o motores de VT sospechosos. <b>Links:</b> se activaron señales locales.</span></li>
+        <li><span class="badge b-mut">No en VirusTotal / URLhaus</span><span>No hay registro de ese hash o URL en la base. No significa que sea seguro: solo que nadie lo ha reportado.</span></li>
+        <li><span class="badge b-mut">Error / —</span><span>No se pudo consultar (sin API key, sin internet o límite de peticiones). El "—" significa que esa consulta no está activada.</span></li>
+      </ul>
+      <h3>✅ Uso</h3>
+      <p>Abre la página → arrastra archivos o pega URLs → (opcional) guarda tus API keys → revisa el resultado, que además tiñe la fila de verde, amarillo o rojo.</p>
+      <h3>⚠️ Limitaciones</h3>
+      <p>Solo escanea lo que tú le pegas (no el PC completo). Archivos muy grandes (&gt;512 MB) se omiten. El análisis es estático (no ejecuta nada), así que un malware empaquetado y "limpio" puede pasar. VT y URLhaus necesitan internet.</p>
+    </div>
+
+    <div class="how-img">
+      <img src="como-funciona.png" alt="Cómo funciona el escáner">
+    </div>
+
   </div>
 </section>
 
