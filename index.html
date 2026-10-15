@@ -396,4 +396,68 @@ async function queryVTUrl(url){
 
 async function queryUrlhaus(url){
   const r = await fetch('https://urlhaus-api.abuse.ch/v1/url/', {
-    method: '
+    method: 'POST',
+    headers: { 'Auth-Key': $('uhKey').value.trim(), 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: 'url=' + encodeURIComponent(url)
+  });
+  if (!r.ok) throw new Error('URLhaus HTTP ' + r.status);
+  return r.json();
+}
+
+$('scanUrls').onclick = async () => {
+  const urls = $('urls').value.split('\n').map(s => s.trim()).filter(Boolean);
+  if (!urls.length) return;
+  const useVT = $('useVT').checked && $('vtKey').value.trim();
+  const useUH = $('useUH').checked && $('uhKey').value.trim();
+  const tbody = $('urlTbody');
+  $('urlResults').hidden = false;
+  for (const url of urls){
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td class="urlcell">${esc(url)}</td><td><span class="badge b-info">…</span></td><td>—</td><td>—</td>`;
+    tbody.appendChild(tr);
+    const issues = checkLocal(url);
+    let localStatus = 'ok';
+    if (issues.includes('URL inválida')) localStatus = 'bad';
+    else if (issues.length) localStatus = 'warn';
+    tr.children[1].innerHTML = issues.length
+      ? `<span class="badge b-warn">❓ ${issues.length} señal(es)</span><div class="hash">${esc(issues.join(' · '))}</div>`
+      : `<span class="badge b-ok">✅ Sin señales</span>`;
+    let worst = localStatus;
+    if (useVT){
+      try {
+        const a = await queryVTUrl(url);
+        if (a.nf) tr.children[2].innerHTML = `<span class="badge b-mut">No en VT</span>`;
+        else {
+          const s = a.last_analysis_stats;
+          const link = `<a href="https://www.virustotal.com/gui/url/${a.id}" target="_blank">ver</a>`;
+          if (s.malicious > 0){ worst = 'bad'; tr.children[2].innerHTML = `<span class="badge b-bad">🦠 ${s.malicious} motores</span> ${link}`; }
+          else if (s.suspicious > 0){ worst = worst==='bad' ? 'bad' : 'warn'; tr.children[2].innerHTML = `<span class="badge b-warn">❓ ${s.suspicious} sospechosos</span> ${link}`; }
+          else tr.children[2].innerHTML = `<span class="badge b-ok">✅ Limpio en VT</span> ${link}`;
+        }
+      } catch (e){ tr.children[2].innerHTML = `<span class="badge b-mut">VT: ${esc(e.message)}</span>`; }
+    }
+    if (useUH){
+      try {
+        const j = await queryUrlhaus(url);
+        if (j.url_status === 'malicious'){ worst = 'bad'; tr.children[3].innerHTML = `<span class="badge b-bad">🦠 Malicioso: ${esc(j.threat || 'sin tipo')}</span>`; }
+        else if (j.url_status === 'clean') tr.children[3].innerHTML = `<span class="badge b-ok">✅ Limpio en URLhaus</span>`;
+        else tr.children[3].innerHTML = `<span class="badge b-mut">No en URLhaus</span>`;
+      } catch (e){ tr.children[3].innerHTML = `<span class="badge b-mut">URLhaus: ${esc(e.message)}</span>`; }
+    }
+    tr.classList.add('r-' + worst);
+    updateUrlSummary();
+  }
+};
+
+function updateUrlSummary(){
+  const rows = [...document.querySelectorAll('#urlTbody tr')];
+  if (!rows.length){ $('urlSummary').textContent = ''; return; }
+  const bad = rows.filter(r => r.classList.contains('r-bad')).length;
+  const warn = rows.filter(r => r.classList.contains('r-warn')).length;
+  const ok = rows.filter(r => r.classList.contains('r-ok')).length;
+  $('urlSummary').innerHTML = `${rows.length} URL(s) · <b class="s-ok">${ok} limpias</b> · <b class="s-warn">${warn} con señales</b> · <b class="s-bad">${bad} maliciosas</b>`;
+}
+$('clearUrls').onclick = () => { $('urlTbody').innerHTML = ''; $('urlResults').hidden = true; $('urlSummary').textContent = ''; };
+</script>
+</body>
+</html>
